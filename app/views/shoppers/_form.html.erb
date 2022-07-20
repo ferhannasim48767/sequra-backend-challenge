@@ -1,0 +1,31 @@
+<%= form_with(model: shopper) do |form| %>
+  <% if shopper.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(shopper.errors.count, "error") %> prohibited this shopper from being saved:</h2>
+
+      <ul>
+        <% shopper.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control", autocomplete:'off' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :email %>
+    <%= form.text_field :email, class: "form-control", autocomplete:'off' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :NIF %>
+    <%= form.text_field :nif, class: "form-control", autocomplete:'off' %>
+  </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

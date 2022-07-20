@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Shoppers</h1>
+
+<div class="table-responsive"> 
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>NIF</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @shoppers.each do |shopper| %>
+        <tr>
+          <td><%= shopper.name %></td>
+          <td><%= shopper.email %></td>
+          <td><%= shopper.nif %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+
+<%= link_to 'New Shopper', new_shopper_path %>
