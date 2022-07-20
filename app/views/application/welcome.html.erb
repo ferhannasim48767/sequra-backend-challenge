@@ -1,0 +1,38 @@
+<h1>Welcome!</h1>
+
+<%= link_to 'Merchants', merchants_path %>
+<%= link_to 'Shopper', shoppers_path %>
+<%= link_to 'Orders', orders_path %>
+
+<h2>Orders</h2>
+<div class="table-responsive"> 
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Amount</th>
+        <th>Fee</th>
+        <th>Shopper</th>
+        <th>Merchant</th>
+        <th>Completed_at</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= order.amount %>€</td>
+          <td><%= order.disburs_fee %><%= order.disburs_fee.blank? ? 'NA' : '€' %></td>
+          <td><%= order.shopper.name %></td>
+          <td><%= order.merchant.name%></td>
+          <td><%= order.completed_at %></td>
+          <% if order.completed_at.blank? %>
+            <td><%= link_to 'Mark as completed', mark_complete_order_path(order) %></td>
+          <% else%>
+            <td><%= link_to 'Calculate Fee', calculate_fee_order_path(order) %></td>
+          <% end %>
+          <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

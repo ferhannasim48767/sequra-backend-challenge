@@ -1,0 +1,31 @@
+<%= form_with(model: order) do |form| %>
+  <% if order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+        <% order.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+   <div class="form-group">
+      <%= form.label :amount %>
+      <%= form.text_field :amount, class: "form-control", autocomplete:'off' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :merchant %>
+      <%= form.select :merchant_id, options_for_select(Merchant.all.map { |m| [m.name, m.id] }, @order.merchant.present? ? @order.merchant.id : ''), {:include_blank => 'Select Merchant Name'}, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :shopper_id %>
+      <%= form.select :shopper_id, options_for_select(Shopper.all.map { |s| [s.name, s.id] }, @order.shopper.present? ? @order.shopper.id : ''), {:include_blank => 'Select Shopper Name'}, class: 'form-control' %>
+    </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
